@@ -1,0 +1,23 @@
+name: Build, Lint, and Format
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: install dependencies
+        run: sudo apt install -y clang-format clang-tidy libncurses-dev
+      - name: make
+        run: make
+      - name: make lint
+        run: make lint
+      - name: make format
+        run: make format
